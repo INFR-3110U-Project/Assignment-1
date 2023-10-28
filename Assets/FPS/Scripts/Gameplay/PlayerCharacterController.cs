@@ -223,14 +223,16 @@ namespace Unity.FPS.Gameplay
             //Things added for Assignments
             if (m_InputHandler.GetPickUpSpawnInput())
             {
-                SpawnPickup(PickupType.Pickup_Jetpack);
+                SpawnPickup("Pickup_Jetpack"); // Pass the pickup type as a string
             }
+
         }
         //Things added for Assignments
-        void SpawnPickup(PickupType type)
+        void SpawnPickup(string type)
         {
             GameObject newPickup = pickupFactory.CreatePickup(type);
         }
+
 
         void OnDie()
         {

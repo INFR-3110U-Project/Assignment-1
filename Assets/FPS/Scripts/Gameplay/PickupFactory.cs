@@ -1,69 +1,45 @@
+///Jayce Lovell 100775118
 using System.Collections.Generic;
+using Unity.FPS.Gameplay;
 using UnityEngine;
-
-public enum PickupType
-{
-    Loot_Health,
-    Loot_Jetpack,
-    Pickup_Blaster,
-    Pickup_Health,
-    Pickup_Jetpack,
-    Pickup_Launcher,
-    Pickup_Shotgun
-}
 
 public class PickupFactory : MonoBehaviour
 {
-    private Dictionary<PickupType, GameObject> pickupPrefabs;
+    public Dictionary<string, GameObject> pickupPrefabs = new Dictionary<string, GameObject>();
 
-    public GameObject LootHealthPrefab;
-    public GameObject LootJetpackPrefab;
-    public GameObject PickupBlasterPrefab;
-    public GameObject PickUpHealthPrefab;
-    public GameObject PickupJetpackPrefab;
-    public GameObject PickupLauncherPrefab;
-    public GameObject PickupShotgunPrefab;
+    public List<string> pickupTypes = new List<string>();
 
-    public PickupFactory()
+    public GameObject defaultPrefab; // In case no valid prefab is found
+
+    public GameObject CreatePickup(string type)
     {
-        // Initialize the dictionary with mappings between PickupType and prefab GameObjects.
-        // For example: pickupPrefabs[PickupType.Loot_Health] = healthLootPrefab;
+        if (pickupPrefabs.TryGetValue(type, out GameObject prefab))
+        {
+            // Access the player's position and forward direction
+            Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            Vector3 playerPosition = playerTransform.position;
+            Vector3 playerForward = playerTransform.forward;
+
+            // Calculate the position in front of the player
+            Vector3 spawnPosition = playerPosition + playerForward * 2.0f; // Adjust the distance as needed
+
+            // Instantiate the chosen prefab at the calculated position
+            GameObject pickup = Instantiate(prefab, spawnPosition, Quaternion.identity);
+
+            return pickup;
+        }
+
+        // If the type is not found, return a default prefab or handle it as you prefer
+        return Instantiate(defaultPrefab);
     }
 
-    public GameObject CreatePickup(PickupType type)
+    public void AddPrefab(string type, GameObject prefab)
     {
-        GameObject prefab = null;
-
-        // Determine the prefab based on the type
-        switch (type)
+        if (!pickupPrefabs.ContainsKey(type))
         {
-            case PickupType.Loot_Health:
-                prefab = LootHealthPrefab;
-                break;
-            case PickupType.Loot_Jetpack:
-                prefab = LootJetpackPrefab;
-                break;
-            case PickupType.Pickup_Blaster:
-                prefab = PickupBlasterPrefab;
-                break;
-            case PickupType.Pickup_Health:
-                prefab = PickUpHealthPrefab;
-                break;
-            case PickupType.Pickup_Jetpack:
-                prefab = PickupJetpackPrefab;
-                break;
-            case PickupType.Pickup_Launcher:
-                prefab = PickupLauncherPrefab;
-                break;
-            case PickupType.Pickup_Shotgun:
-                prefab = PickupShotgunPrefab;
-                break;
-            // Add cases for other pickup types
-            default:
-                Debug.LogError("Invalid pickup type: " + type);
-                break;
+            pickupTypes.Add(type); // Add the type to the list if not already added
         }
-        // Instantiate the chosen prefab and return it
-        return Instantiate(prefab);
+
+        pickupPrefabs[type] = prefab;
     }
 }
