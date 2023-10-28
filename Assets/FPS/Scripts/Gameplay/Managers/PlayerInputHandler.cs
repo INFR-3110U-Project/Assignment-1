@@ -263,5 +263,18 @@ namespace Unity.FPS.Gameplay
 
             return 0f;
         }
+
+        /// <summary>
+        /// Added this to call method
+        /// </summary>
+        /// <returns></returns>
+        public bool GetPickUpSpawnInput()
+        {
+            if(CanProcessInput())
+            {
+                return Input.GetKeyDown(KeyCode.I);
+            }
+            return false;
+        }
     }
 }
