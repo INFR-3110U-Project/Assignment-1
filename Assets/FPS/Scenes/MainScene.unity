@@ -1276,6 +1276,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2729281213873661534}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1869463115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4778346531047654936, guid: c1f95b2a073069e4091731002c38a3df,
+    type: 3}
+  m_PrefabInstance: {fileID: 2729281214287269654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1869463116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869463115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &1880561205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5963937743390997973, guid: 7042f8fe21debc944b5bdc894f478d63,
@@ -3168,6 +3194,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Id: b7ef103c-6e78-41af-8322-5ac95ed05882
+--- !u!114 &2729281214152228934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729281214152228921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432abd1dcf574c34eb061e7b95bae3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LootHealthPrefab: {fileID: 2529580269645609534, guid: 9973c412032becb4ca116ca08be62edf,
+    type: 3}
+  LootJetpackPrefab: {fileID: 2620131183356007192, guid: 0bb4e7bdf1aec0247854edd179ed1557,
+    type: 3}
+  PickupBlasterPrefab: {fileID: 5391986374566301945, guid: fe0bc5bbccc19ef47a15b81c0abbb779,
+    type: 3}
+  PickUpHealthPrefab: {fileID: 2620131183356007192, guid: d40ae884302b6684a8b3b6f3d55a71ba,
+    type: 3}
+  PickupJetpackPrefab: {fileID: 8200220640316782922, guid: d771f03a2656e194fba5a444d5a3d9e7,
+    type: 3}
+  PickupLauncherPrefab: {fileID: 7671270577186476446, guid: a7fa348d53593bb42922672c6cf40651,
+    type: 3}
+  PickupShotgunPrefab: {fileID: 5391986374566301945, guid: 66d579771ab0ab94a92b3411ba179621,
+    type: 3}
 --- !u!1001 &2729281214182533258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4179,6 +4231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
