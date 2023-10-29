@@ -492,4 +492,5 @@ namespace Unity.FPS.Gameplay
             return true;
         }
     }
+
 }
