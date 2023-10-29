@@ -30,7 +30,7 @@ namespace Unity.FPS.Gameplay
 
         private void Update()
         {
-            if (Input.GetButtonDown("q"))
+            if (Input.GetButtonDown("m"))
             {
                 // Execute the ShootCommand when input is detected.
                 if (shootCommand != null)
@@ -310,5 +310,18 @@ namespace Unity.FPS.Gameplay
 
             return 0f;
         }
+        /// <summary>
+        /// Added this to call method
+        /// </summary>
+        /// <returns></returns>
+        public bool GetPickUpSpawnInput()
+        {
+            if (CanProcessInput())
+            {
+                return Input.GetKeyDown(KeyCode.I);
+            }
+            return false;
+        }
     }
+
 }
