@@ -88,6 +88,9 @@ namespace Unity.FPS.AI
         public UnityAction onDetectedTarget;
         public UnityAction onLostTarget;
         public UnityAction onDamaged;
+        //observer pattern
+        public delegate void onAnyEnemyDamage();
+        public static event onAnyEnemyDamage onEnemyDamage;
 
         List<RendererIndexData> m_BodyRenderers = new List<RendererIndexData>();
         MaterialPropertyBlock m_BodyFlashMaterialPropertyBlock;
@@ -347,6 +350,13 @@ namespace Unity.FPS.AI
                 DetectionModule.OnDamaged(damageSource);
                 
                 onDamaged?.Invoke();
+
+                //score check for enemy hit
+                if (onEnemyDamage != null)
+                {
+                    onEnemyDamage();
+                }
+
                 m_LastTimeDamaged = Time.time;
             
                 // play the damage tick sound
