@@ -5,14 +5,14 @@ using TMPro;
 
 public class KillCountTracker : MonoBehaviour
 {
-    //Adding Singleton instance
+    // Adding Singleton instance
     public static KillCountTracker s_instance { get; private set; }
-
-    // using the TextMeshProUGUI component
-    [SerializeField] private TextMeshProUGUI killCountText; 
-
     // Property to track the kill count
     public int KillCount { get; private set; }
+
+    // Using the TextMeshProUGUI component
+    [SerializeField] private TextMeshProUGUI killCountText; 
+
 
     void Awake()
     {
@@ -21,29 +21,31 @@ public class KillCountTracker : MonoBehaviour
         {
             // If not, set instance to this
             s_instance = this;
-            // Also to keep this object alive when loading new scenes
+            // Also to not always destroy object when loading new scenes
+            // but its optional
             DontDestroyOnLoad(gameObject);
         }
         else if (s_instance != this)
         {
-            // If an instance already exists and it's not this one, destroy this one
+            // If an instance already exists and it's not 'this' one, destroy this one
             Destroy(gameObject);
         }
     }
 
-    // Method to track the kill count
+    // Adding a method to track the kill count
     public void KillCounter()
     {
         KillCount++;
-        // Optionally, update the UI or other game elements here
         UpdateKillCountUI();
     }
 
-    // Placeholder for method to update the UI
+    // Adding a method to update the UI
     private void UpdateKillCountUI()
     {
-        // Implement the UI update logic here
-        // For example: killCountText.text = "Kills: " + KillCount.ToString();
+        if (killCountText != null)
+        {
+            killCountText.text = "Kills: " + KillCount.ToString();
+        }
     }
 }
 
