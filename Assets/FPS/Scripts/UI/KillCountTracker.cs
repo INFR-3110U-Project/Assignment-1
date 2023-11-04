@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.FPS.Game;
 
 public class KillCountTracker : MonoBehaviour
 {
@@ -30,6 +31,24 @@ public class KillCountTracker : MonoBehaviour
             // If an instance already exists and it's not 'this' one, destroy this one
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        // Listening for "EnemyKillEvent" events
+        EventManager.AddListener<EnemyKillEvent>(OnEnemyKilled);
+    }
+
+    void OnDestroy()
+    {
+        // When the object is destroyed, removing the listener.
+        EventManager.RemoveListener<EnemyKillEvent>(OnEnemyKilled);
+    }
+
+    private void OnEnemyKilled(EnemyKillEvent evt)
+    {
+        // Adding to the kill count whenever an enemy is killed
+        KillCounter();
     }
 
     // Adding a method to track the kill count
